@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Core Audio,iOS,MacOS," />
 
 
 
@@ -84,15 +84,21 @@
 
 
 
-<meta name="description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
-<meta property="og:type" content="website">
-<meta property="og:title" content="johnny's technology blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(苹果原链接:Core Audio Essentials )
+CoreAudio概要苹果公司设计的针对核心音频的软件接口，采用分层、合作、以任务为中心的方法。阅读本章的前两个部分简要介绍这些接口以及它们如何一起工作。继续阅读了解遍布核心音频的设计原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苹果核心音频(Core Audio)之要点-第一篇">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/CoreAudioEssentials/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
-<meta property="og:description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
+<meta property="og:description" content="本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(苹果原链接:Core Audio Essentials )
+CoreAudio概要苹果公司设计的针对核心音频的软件接口，采用分层、合作、以任务为中心的方法。阅读本章的前两个部分简要介绍这些接口以及它们如何一起工作。继续阅读了解遍布核心音频的设计原">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.png">
+<meta property="og:updated_time" content="2016-09-23T10:41:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="johnny's technology blog">
-<meta name="twitter:description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
+<meta name="twitter:title" content="苹果核心音频(Core Audio)之要点-第一篇">
+<meta name="twitter:description" content="本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(苹果原链接:Core Audio Essentials )
+CoreAudio概要苹果公司设计的针对核心音频的软件接口，采用分层、合作、以任务为中心的方法。阅读本章的前两个部分简要介绍这些接口以及它们如何一起工作。继续阅读了解遍布核心音频的设计原">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.png">
 
 
 
@@ -113,9 +119,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/23/CoreAudioEssentials/"/>
 
-  <title> johnny's technology blog </title>
+  <title> 苹果核心音频(Core Audio)之要点-第一篇 | johnny's technology blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,9 +152,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -225,9 +229,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -247,10 +251,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/09/23/CoreAudioEssentials/" itemprop="url">
-                  苹果核心音频(Core Audio)之要点-第一篇
-                </a>
+                苹果核心音频(Core Audio)之要点-第一篇
               
             
           </h1>
@@ -297,9 +298,7 @@
       
 
       
-        
-          
-            <p>本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(<a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html#//apple_ref/doc/uid/TP40003577-CH10-SW1" target="_blank" rel="external">苹果原链接:Core Audio Essentials</a> )</p>
+        <p>本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(<a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html#//apple_ref/doc/uid/TP40003577-CH10-SW1" target="_blank" rel="external">苹果原链接:Core Audio Essentials</a> )</p>
 <h1 id="CoreAudio概要"><a href="#CoreAudio概要" class="headerlink" title="CoreAudio概要"></a>CoreAudio概要</h1><p>苹果公司设计的针对核心音频的软件接口，采用分层、合作、以任务为中心的方法。阅读本章的前两个部分简要介绍这些接口以及它们如何一起工作。继续阅读了解遍布核心音频的设计原则、使用模式和编程语法。在本章后面的部分向您介绍核心音频如何处理文件、流、录音和回放、以及插件。</p>
 <h2 id="API架构层"><a href="#API架构层" class="headerlink" title="API架构层"></a>API架构层</h2><p>CoreAudio编程接口设置为三层，如图2-1所示。</p>
 <p><img src="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.png" alt="图2-1 CoreAudio的三层接口">图2-1 核心音频的三层接口</p>
@@ -334,137 +333,63 @@
 <li>OpenAL framework (OpenAL.framework) ：</li>
 </ul>
 <h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/firstArticle/" itemprop="url">
-                  欢迎来到我的博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T18:06:24+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Core-Audio/" rel="tag">#Core Audio</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/21/firstArticle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/firstArticle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/MacOS/" rel="tag">#MacOS</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。</p>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/21/firstArticle/" rel="next" title="欢迎来到我的博客">
+                <i class="fa fa-chevron-left"></i> 欢迎来到我的博客
+              </a>
+            
+          </div>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -472,6 +397,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/23/CoreAudioEssentials/"
+           data-title="苹果核心音频(Core Audio)之要点-第一篇" data-url="http://yoursite.com/2016/09/23/CoreAudioEssentials/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -491,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars3.githubusercontent.com/u/3095733?v=3&u=1ef1db2fa957062d30c7ba530de898f9474fbfc8&s=140"
@@ -535,6 +477,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreAudio概要"><span class="nav-number">1.</span> <span class="nav-text">CoreAudio概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API架构层"><span class="nav-number">1.1.</span> <span class="nav-text">API架构层</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#最底层包括："><span class="nav-number">1.1.0.0.0.1.</span> <span class="nav-text">最底层包括：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务："><span class="nav-number">1.1.0.0.0.2.</span> <span class="nav-text">中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#最高层包括结合了从较低层的功能并精简的接口："><span class="nav-number">1.1.0.0.0.3.</span> <span class="nav-text">最高层包括结合了从较低层的功能并精简的接口：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">1.2.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">1.3.</span> <span class="nav-text">未完待续</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -631,6 +584,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
