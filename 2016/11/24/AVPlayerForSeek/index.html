@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="AVPlayer,iOS,Seek," />
 
 
 
@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
-<meta property="og:type" content="website">
-<meta property="og:title" content="johnny's technology blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="AVPlayer是AVFoundation框架下的音视频播放器，可以用来播放音频、视频，并简单封装了播放器的一些控制操作，比如播放、暂停和快进等。本篇文章不对AVPlayer的使用做过多的介绍，主要针对seek（快进、快退）功能的遇到的一些问题进行一些解决方案。
+问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置具体情况是这样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AVPlayer Seek精确度到帧">
+<meta property="og:url" content="http://yoursite.com/2016/11/24/AVPlayerForSeek/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
-<meta property="og:description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
+<meta property="og:description" content="AVPlayer是AVFoundation框架下的音视频播放器，可以用来播放音频、视频，并简单封装了播放器的一些控制操作，比如播放、暂停和快进等。本篇文章不对AVPlayer的使用做过多的介绍，主要针对seek（快进、快退）功能的遇到的一些问题进行一些解决方案。
+问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置具体情况是这样">
+<meta property="og:updated_time" content="2016-11-25T08:28:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="johnny's technology blog">
-<meta name="twitter:description" content="本技术博客主要用来记录和分享一些技术和经验，欢迎吐槽">
+<meta name="twitter:title" content="AVPlayer Seek精确度到帧">
+<meta name="twitter:description" content="AVPlayer是AVFoundation框架下的音视频播放器，可以用来播放音频、视频，并简单封装了播放器的一些控制操作，比如播放、暂停和快进等。本篇文章不对AVPlayer的使用做过多的介绍，主要针对seek（快进、快退）功能的遇到的一些问题进行一些解决方案。
+问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置具体情况是这样">
 
 
 
@@ -113,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/24/AVPlayerForSeek/"/>
 
-  <title> johnny's technology blog </title>
+  <title> AVPlayer Seek精确度到帧 | johnny's technology blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,9 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -225,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -247,10 +249,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/24/AVPlayerForSeek/" itemprop="url">
-                  AVPlayer Seek精确度到帧
-                </a>
+                AVPlayer Seek精确度到帧
               
             
           </h1>
@@ -297,9 +296,7 @@
       
 
       
-        
-          
-            <p>AVPlayer是AVFoundation框架下的音视频播放器，可以用来播放音频、视频，并简单封装了播放器的一些控制操作，比如播放、暂停和快进等。本篇文章不对AVPlayer的使用做过多的介绍，主要针对seek（快进、快退）功能的遇到的一些问题进行一些解决方案。</p>
+        <p>AVPlayer是AVFoundation框架下的音视频播放器，可以用来播放音频、视频，并简单封装了播放器的一些控制操作，比如播放、暂停和快进等。本篇文章不对AVPlayer的使用做过多的介绍，主要针对seek（快进、快退）功能的遇到的一些问题进行一些解决方案。</p>
 <h1 id="问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置"><a href="#问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置" class="headerlink" title="问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置"></a>问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置</h1><p>具体情况是这样的，我们使用AVPlayer进行seek的时候习惯使用以下实例方法</p>
 <ul>
 <li>(void)seekToTime:(CMTime)time   或者</li>
@@ -419,271 +416,63 @@ CMTime lastframe=CMTimeMake(48, 24);
 
 
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/23/CoreAudioEssentials/" itemprop="url">
-                  苹果核心音频(Core Audio)之要点-第一篇
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-23T15:59:47+08:00" content="2016-09-23">
-              2016-09-23
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/AVPlayer/" rel="tag">#AVPlayer</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/23/CoreAudioEssentials/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/23/CoreAudioEssentials/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/Seek/" rel="tag">#Seek</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>本篇文章主要是翻译苹果关于CoreAudio的官方文档，并解读。用来帮助不想看英文文档的你来快速的了解其所阐述的内容。不允许用于商业转载和其它商业模式。(<a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html#//apple_ref/doc/uid/TP40003577-CH10-SW1" target="_blank" rel="external">苹果原链接:Core Audio Essentials</a> )</p>
-<h1 id="CoreAudio概要"><a href="#CoreAudio概要" class="headerlink" title="CoreAudio概要"></a>CoreAudio概要</h1><p>苹果公司设计的针对核心音频的软件接口，采用分层、合作、以任务为中心的方法。阅读本章的前两个部分简要介绍这些接口以及它们如何一起工作。继续阅读了解遍布核心音频的设计原则、使用模式和编程语法。在本章后面的部分向您介绍核心音频如何处理文件、流、录音和回放、以及插件。</p>
-<h2 id="API架构层"><a href="#API架构层" class="headerlink" title="API架构层"></a>API架构层</h2><p>CoreAudio编程接口设置为三层，如图2-1所示。</p>
-<p><img src="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.png" alt="图2-1 CoreAudio的三层接口">图2-1 核心音频的三层接口</p>
-<h6 id="最底层包括："><a href="#最底层包括：" class="headerlink" title="最底层包括："></a>最底层包括：</h6><ul>
-<li>I/O Kit:和驱动程序交互</li>
-<li>Audio HAL:全称是音频硬件抽象层（audio hardware abstraction layer），它提供了一个与设备无关，与驱动程序无关的硬件接口</li>
-<li>Core MIDI:为<a href="http://baike.baidu.com/link?url=Zj-AXW8Mja7oM3OIcNtTCen_qB2q6qE57b6DvCAhxnV4rU-KB-gWLHUckKwRHFcFoYuzROk7w_RztXhL5or08q" target="_blank" rel="external">MIDI(Musical Instrument Digital Interface,乐器数字接口)</a>流和设备提供软件的抽象</li>
-<li>Host Time Services:主机时间服务,它提供了访问计算机的时钟</li>
-</ul>
-<p>当他们需要尽可能高的实时性能时，Mac应用可以直接使用这些技术。但是许多音频应用程序不访问这一层。事实上，在iOS核心音频提供了实现实时音频使用高级别的接口方式。例如OpenAL，采用直接I/O对于游戏中的实时音频。其是为移动平台适当调整，且相当轻量。</p>
-<h6 id="中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务："><a href="#中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务：" class="headerlink" title="中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务："></a>中间层包括用于数据格式转换、读取和写入到磁盘、解析流以及与插件一起工作的服务：</h6><ul>
-<li>Audio Converter Services：让应用程序工作与音频数据格式转换器。</li>
-<li>Audio File Services：支持从磁盘文件读取数据和写入数据到磁盘文件</li>
-<li>Audio Unit Services and Audio Processing Graph Services：让应用程序工作与数字信号处理（DSP）的插件，如均衡器和混频器。</li>
-<li>Audio File Stream Services：创建可以解析流的应用程序，例如用于通过网络连接进行播放的文件。也就是通常所说的流播放</li>
-<li>Core Audio Clock Services：支持音频和MIDI同步以及时间基准转换。</li>
-</ul>
-<h6 id="最高层包括结合了从较低层的功能并精简的接口："><a href="#最高层包括结合了从较低层的功能并精简的接口：" class="headerlink" title="最高层包括结合了从较低层的功能并精简的接口："></a>最高层包括结合了从较低层的功能并精简的接口：</h6><ul>
-<li>Audio Queue Services：让您记录、播放、暂停、循环和同步音频。它采用的编解码器进行必要处理压缩音频格式。</li>
-<li>AVAudioPlayer class：提供了一个简单的Objective-C接口用于播放和循环音频以及实现快退快进。</li>
-<li>Extended Audio File Services：整合了Audio File Services 和 Audio Converter services的功能，它给你一个统一的接口，用于读取和写入压缩和非压缩的声音文件。</li>
-<li>OpenAL：基于开源的OpenAL音效标准实现，它是建立在顶部的系统提供的三维调音台音频单元。所有的应用程序都可以使用OpenAL，虽然它是最适合游戏开发。</li>
-</ul>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>Core Audio framework 是以下框架的一个统括，也是一个确实存在的框架</p>
-<ul>
-<li>Audio Toolbox framework (AudioToolbox.framework)：提供了中间层和最高层的一些服务。iOS中包括Audio Session Services</li>
-<li>AV Foundation framework (AVFoundation.framework)：在iOS上可用，提供AVAudioPlayer类，一个改进的简单的Objective-C接口用于音频播放</li>
-<li>Core Audio framework (CoreAudio.framework)：</li>
-<li>Core Audio Kit framework (CoreAudioKit.framework)：</li>
-<li>Core MIDI framework (CoreMIDI.framework)：</li>
-<li>Core MIDI Server framework (CoreMIDIServer.framework)：</li>
-<li>OpenAL framework (OpenAL.framework) ：</li>
-</ul>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/23/CoreAudioEssentials/" rel="next" title="苹果核心音频(Core Audio)之要点-第一篇">
+                <i class="fa fa-chevron-left"></i> 苹果核心音频(Core Audio)之要点-第一篇
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/09/21/firstArticle/" itemprop="url">
-                  欢迎来到我的博客
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T18:06:24+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/21/firstArticle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/firstArticle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -691,6 +480,14 @@ CMTime lastframe=CMTimeMake(48, 24);
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/AVPlayerForSeek/"
+           data-title="AVPlayer Seek精确度到帧" data-url="http://yoursite.com/2016/11/24/AVPlayerForSeek/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -710,8 +507,17 @@ CMTime lastframe=CMTimeMake(48, 24);
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars3.githubusercontent.com/u/3095733?v=3&u=1ef1db2fa957062d30c7ba530de898f9474fbfc8&s=140"
@@ -754,6 +560,17 @@ CMTime lastframe=CMTimeMake(48, 24);
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置"><span class="nav-number">1.</span> <span class="nav-text">问题点1：AVPlayer当播放视频的时候，进行seek的时候精确度不能精确到小于1秒，也就是不能seek到视频每帧的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单实现了一个例子，拖动自定义的一个进度条，来实现视频预览的快进和快退，精确到帧"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">简单实现了一个例子，拖动自定义的一个进度条，来实现视频预览的快进和快退，精确到帧</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简单说一下CMTime"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">简单说一下CMTime</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -850,6 +667,10 @@ CMTime lastframe=CMTimeMake(48, 24);
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
