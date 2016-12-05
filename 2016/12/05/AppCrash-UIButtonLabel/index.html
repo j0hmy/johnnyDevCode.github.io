@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]###具体奔溃信息如下“OS Version:          iOS 8.3 (12F70)Hardware Model:      iPhone7,2Exception Type:  EXC_BREAKPOINT (SIGTRAP)Exception Codes: 0x">
+<meta name="description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]具体奔溃信息如下
+OS Version:          iOS 8.3 (12F70)
+Hardware Model:      iPhone7,2
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="APP 崩溃问题“-[UIButtonLabel _defaultAttributes]”">
 <meta property="og:url" content="http://yoursite.com/2016/12/05/AppCrash-UIButtonLabel/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
-<meta property="og:description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]###具体奔溃信息如下“OS Version:          iOS 8.3 (12F70)Hardware Model:      iPhone7,2Exception Type:  EXC_BREAKPOINT (SIGTRAP)Exception Codes: 0x">
-<meta property="og:updated_time" content="2016-12-05T08:54:22.000Z">
+<meta property="og:description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]具体奔溃信息如下
+OS Version:          iOS 8.3 (12F70)
+Hardware Model:      iPhone7,2
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x">
+<meta property="og:updated_time" content="2016-12-05T09:14:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="APP 崩溃问题“-[UIButtonLabel _defaultAttributes]”">
-<meta name="twitter:description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]###具体奔溃信息如下“OS Version:          iOS 8.3 (12F70)Hardware Model:      iPhone7,2Exception Type:  EXC_BREAKPOINT (SIGTRAP)Exception Codes: 0x">
+<meta name="twitter:description" content="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]具体奔溃信息如下
+OS Version:          iOS 8.3 (12F70)
+Hardware Model:      iPhone7,2
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x">
 
 
 
@@ -293,8 +305,20 @@
       
 
       
-        <h2 id="最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes"><a href="#最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes" class="headerlink" title="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]"></a>最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]</h2><p>###具体奔溃信息如下<br>“<br>OS Version:          iOS 8.3 (12F70)<br>Hardware Model:      iPhone7,2<br>Exception Type:  EXC_BREAKPOINT (SIGTRAP)<br>Exception Codes: 0x0000000000000001, 0x000000018379d688<br>Triggered by Thread:  8</p>
-<p>Thread 0 name:  Dispatch queue: com.apple.main-thread<br>Thread 0:<br>0   UIKit                             0x00000001883be6c8 -[UIButtonLabel _defaultAttributes] + 0<br>1   UIKit                             0x00000001883163ac -[UILabel lineBreakMode] + 140<br>2   UIKit                             0x00000001883be9c0 -[UIButtonLabel setLineBreakMode:] + 60”</p>
+        <h2 id="最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes"><a href="#最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes" class="headerlink" title="最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]"></a>最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]</h2><h4 id="具体奔溃信息如下"><a href="#具体奔溃信息如下" class="headerlink" title="具体奔溃信息如下"></a>具体奔溃信息如下</h4><pre><code>
+OS Version:          iOS 8.3 (12F70)
+Hardware Model:      iPhone7,2
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x0000000000000001, 0x000000018379d688
+Triggered by Thread:  8
+
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0:
+0   UIKit                             0x00000001883be6c8 -[UIButtonLabel _defaultAttributes] + 0
+1   UIKit                             0x00000001883163ac -[UILabel lineBreakMode] + 140
+2   UIKit                             0x00000001883be9c0 -[UIButtonLabel setLineBreakMode:] + 60
+</code></pre>
+
 <p>通过网上查资料，可能是iOS8 的一个bug，不过不是很确定，暂且记录一下，以后遇到解决方案的再更新<br><a href="http://stackoverflow.com/questions/26284625/app-crash-on-uibuttonlabel-defaultattributes" target="_blank" rel="external">原文如下:“App Crash on UIButtonLabel defaultAttributes”</a> </p>
 
       
@@ -448,7 +472,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes"><span class="nav-number">1.</span> <span class="nav-text">最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最近项目中发现一个诡异的崩溃，崩溃点在-UIKit-的-UIButtonLabel-defaultAttributes"><span class="nav-number">1.</span> <span class="nav-text">最近项目中发现一个诡异的崩溃，崩溃点在 UIKit 的-[UIButtonLabel _defaultAttributes]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体奔溃信息如下"><span class="nav-number">1.0.1.</span> <span class="nav-text">具体奔溃信息如下</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
