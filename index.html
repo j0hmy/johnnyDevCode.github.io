@@ -248,6 +248,154 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/07/iOSWebInstall/" itemprop="url">
+                  移动采编App在线安装方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T16:57:26+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/07/iOSWebInstall/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/iOSWebInstall/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="这周做了一个iOS移动采编App在线安装方案，分享给大家。"><a href="#这周做了一个iOS移动采编App在线安装方案，分享给大家。" class="headerlink" title="这周做了一个iOS移动采编App在线安装方案，分享给大家。"></a>这周做了一个iOS移动采编App在线安装方案，分享给大家。</h1><p>如下：<br>1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；<br>2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；<br>3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist<br>4.将以上文件，包括ipa、icon、manifest.plist等存储在咱们自己的服务器上，要求访问URL为https；<br>5.在web页面中的安装按钮的链接设置为如下格式：<br><a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">click to download</a><br>注意：红色部分为固定格式，不符合这种格式的话苹果iOS系统不能识别，就无法安装；蓝色部分为配置文件在服务器上的访问的URL</p>
+<p>6.关于升级功能的实现，需要服务器管理安装包的版本，每个版本都需要维护上面的一套ipa和manifest.plist。<br>7.升级接口中需要返回给客户端安装最新版的URL应该是包含红色部分的固定格式的完整链接，比如“itms-services://?action=download-manifest&amp;url=<a href="https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”" target="_blank" rel="external">https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”</a></p>
+<p>最后是我做的一个例子，访问我的电脑就可以安装，访问地址：<a href="itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">安装企业版ipa</a><br>简单说一下，就是用nginx在本机搭建了一个web服务器，写了一个很简单的html页面；为了快速解决https关于SSL证书的问题，我使用了github的免费空间，将pa、icon、manifest.plist放在上面。</p>
+<h3 id="manifest-plist的详细内容如下："><a href="#manifest-plist的详细内容如下：" class="headerlink" title="manifest.plist的详细内容如下："></a>manifest.plist的详细内容如下：</h3><pre><code>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>items</key>
+<array>
+<dict>
+<key>assets</key>
+<array>
+<dict>
+<key>kind</key>
+<string>software-package</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/LocalDevTTCBB.ipa</string>
+</dict>
+<dict>
+<key>kind</key>
+<string>display-image</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon57x57.png</string>
+</dict>
+<dict>
+<key>kind</key>
+<string>full-size-image</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon512x512.png</string>
+</dict>
+</array>
+<key>metadata</key>
+<dict>
+<key>bundle-identifier</key>
+<string>com.tingting.cbb</string>
+<key>bundle-version</key>
+<string>1.0</string>
+<key>kind</key>
+<string>software</string>
+<key>title</key>
+<string>TTCBB</string>
+</dict>
+</dict>
+</array>
+</dict>
+</plist>
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/05/AppCrash-UIButtonLabel/" itemprop="url">
                   APP 崩溃问题“-[UIButtonLabel _defaultAttributes]”
                 </a>
@@ -837,7 +985,7 @@ CMTime lastframe=CMTimeMake(48, 24);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -847,7 +995,7 @@ CMTime lastframe=CMTimeMake(48, 24);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="博客搭建," />
+  <meta name="keywords" content="iOS,企业版无线安装," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。">
+<meta name="description" content="这周做了一个iOS移动采编App在线安装方案，分享给大家。如下：1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist4.将以上文件，包括ipa、icon、manifes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="欢迎来到我的博客">
-<meta property="og:url" content="http://yoursite.com/2016/09/21/firstArticle/index.html">
+<meta property="og:title" content="移动采编App在线安装方案">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/iOSWebInstall/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
-<meta property="og:description" content="博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。">
-<meta property="og:updated_time" content="2016-09-21T10:19:16.000Z">
+<meta property="og:description" content="这周做了一个iOS移动采编App在线安装方案，分享给大家。如下：1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist4.将以上文件，包括ipa、icon、manifes">
+<meta property="og:updated_time" content="2016-12-07T09:07:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到我的博客">
-<meta name="twitter:description" content="博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。">
+<meta name="twitter:title" content="移动采编App在线安装方案">
+<meta name="twitter:description" content="这周做了一个iOS移动采编App在线安装方案，分享给大家。如下：1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist4.将以上文件，包括ipa、icon、manifes">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/21/firstArticle/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/07/iOSWebInstall/"/>
 
-  <title> 欢迎来到我的博客 | johnny's technology blog </title>
+  <title> 移动采编App在线安装方案 | johnny's technology blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +246,7 @@
             
             
               
-                欢迎来到我的博客
+                移动采编App在线安装方案
               
             
           </h1>
@@ -258,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T18:06:24+08:00" content="2016-09-21">
-              2016-09-21
+            <time itemprop="dateCreated" datetime="2016-12-07T16:57:26+08:00" content="2016-12-07">
+              2016-12-07
             </time>
           </span>
 
@@ -269,8 +269,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/21/firstArticle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/firstArticle/" itemprop="commentsCount"></span>
+                <a href="/2016/12/07/iOSWebInstall/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/iOSWebInstall/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,7 +293,54 @@
       
 
       
-        <p>博客刚刚搭建起来，还没有具体内容，之后会陆续更新有价值的内容进来。</p>
+        <h1 id="这周做了一个iOS移动采编App在线安装方案，分享给大家。"><a href="#这周做了一个iOS移动采编App在线安装方案，分享给大家。" class="headerlink" title="这周做了一个iOS移动采编App在线安装方案，分享给大家。"></a>这周做了一个iOS移动采编App在线安装方案，分享给大家。</h1><p>如下：<br>1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；<br>2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；<br>3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist<br>4.将以上文件，包括ipa、icon、manifest.plist等存储在咱们自己的服务器上，要求访问URL为https；<br>5.在web页面中的安装按钮的链接设置为如下格式：<br><a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">click to download</a><br>注意：红色部分为固定格式，不符合这种格式的话苹果iOS系统不能识别，就无法安装；蓝色部分为配置文件在服务器上的访问的URL</p>
+<p>6.关于升级功能的实现，需要服务器管理安装包的版本，每个版本都需要维护上面的一套ipa和manifest.plist。<br>7.升级接口中需要返回给客户端安装最新版的URL应该是包含红色部分的固定格式的完整链接，比如“itms-services://?action=download-manifest&amp;url=<a href="https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”" target="_blank" rel="external">https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”</a></p>
+<p>最后是我做的一个例子，访问我的电脑就可以安装，访问地址：<a href="itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">安装企业版ipa</a><br>简单说一下，就是用nginx在本机搭建了一个web服务器，写了一个很简单的html页面；为了快速解决https关于SSL证书的问题，我使用了github的免费空间，将pa、icon、manifest.plist放在上面。</p>
+<h3 id="manifest-plist的详细内容如下："><a href="#manifest-plist的详细内容如下：" class="headerlink" title="manifest.plist的详细内容如下："></a>manifest.plist的详细内容如下：</h3><pre><code>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>items</key>
+<array>
+<dict>
+<key>assets</key>
+<array>
+<dict>
+<key>kind</key>
+<string>software-package</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/LocalDevTTCBB.ipa</string>
+</dict>
+<dict>
+<key>kind</key>
+<string>display-image</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon57x57.png</string>
+</dict>
+<dict>
+<key>kind</key>
+<string>full-size-image</string>
+<key>url</key>
+<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon512x512.png</string>
+</dict>
+</array>
+<key>metadata</key>
+<dict>
+<key>bundle-identifier</key>
+<string>com.tingting.cbb</string>
+<key>bundle-version</key>
+<string>1.0</string>
+<key>kind</key>
+<string>software</string>
+<key>title</key>
+<string>TTCBB</string>
+</dict>
+</dict>
+</array>
+</dict>
+</plist>
+</code></pre>
 
       
     </div>
@@ -316,7 +363,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客搭建/" rel="tag">#博客搭建</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/企业版无线安装/" rel="tag">#企业版无线安装</a>
           
         </div>
       
@@ -325,13 +374,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/12/05/AppCrash-UIButtonLabel/" rel="next" title="APP 崩溃问题“-[UIButtonLabel _defaultAttributes]”">
+                <i class="fa fa-chevron-left"></i> APP 崩溃问题“-[UIButtonLabel _defaultAttributes]”
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/23/CoreAudioEssentials/" rel="prev" title="苹果核心音频(Core Audio)之要点-第一篇">
-                苹果核心音频(Core Audio)之要点-第一篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -357,8 +406,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/21/firstArticle/"
-           data-title="欢迎来到我的博客" data-url="http://yoursite.com/2016/09/21/firstArticle/">
+      <div class="ds-thread" data-thread-key="2016/12/07/iOSWebInstall/"
+           data-title="移动采编App在线安装方案" data-url="http://yoursite.com/2016/12/07/iOSWebInstall/">
       </div>
     
   </div>
@@ -442,7 +491,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#这周做了一个iOS移动采编App在线安装方案，分享给大家。"><span class="nav-number">1.</span> <span class="nav-text">这周做了一个iOS移动采编App在线安装方案，分享给大家。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#manifest-plist的详细内容如下："><span class="nav-number">1.0.1.</span> <span class="nav-text">manifest.plist的详细内容如下：</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
