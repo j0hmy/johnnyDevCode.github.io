@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/07/iOSWebInstall/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
 <meta property="og:description" content="这周做了一个iOS移动采编App在线安装方案，分享给大家。如下：1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist4.将以上文件，包括ipa、icon、manifes">
-<meta property="og:updated_time" content="2016-12-07T09:07:12.000Z">
+<meta property="og:updated_time" content="2016-12-07T09:26:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动采编App在线安装方案">
 <meta name="twitter:description" content="这周做了一个iOS移动采编App在线安装方案，分享给大家。如下：1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist4.将以上文件，包括ipa、icon、manifes">
@@ -293,54 +293,10 @@
       
 
       
-        <h1 id="这周做了一个iOS移动采编App在线安装方案，分享给大家。"><a href="#这周做了一个iOS移动采编App在线安装方案，分享给大家。" class="headerlink" title="这周做了一个iOS移动采编App在线安装方案，分享给大家。"></a>这周做了一个iOS移动采编App在线安装方案，分享给大家。</h1><p>如下：<br>1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；<br>2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；<br>3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist<br>4.将以上文件，包括ipa、icon、manifest.plist等存储在咱们自己的服务器上，要求访问URL为https；<br>5.在web页面中的安装按钮的链接设置为如下格式：<br><a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">click to download</a><br>注意：红色部分为固定格式，不符合这种格式的话苹果iOS系统不能识别，就无法安装；蓝色部分为配置文件在服务器上的访问的URL</p>
-<p>6.关于升级功能的实现，需要服务器管理安装包的版本，每个版本都需要维护上面的一套ipa和manifest.plist。<br>7.升级接口中需要返回给客户端安装最新版的URL应该是包含红色部分的固定格式的完整链接，比如“itms-services://?action=download-manifest&amp;url=<a href="https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”" target="_blank" rel="external">https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist”</a></p>
-<p>最后是我做的一个例子，访问我的电脑就可以安装，访问地址：<a href="itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">安装企业版ipa</a><br>简单说一下，就是用nginx在本机搭建了一个web服务器，写了一个很简单的html页面；为了快速解决https关于SSL证书的问题，我使用了github的免费空间，将pa、icon、manifest.plist放在上面。</p>
-<h3 id="manifest-plist的详细内容如下："><a href="#manifest-plist的详细内容如下：" class="headerlink" title="manifest.plist的详细内容如下："></a>manifest.plist的详细内容如下：</h3><pre><code>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-<key>items</key>
-<array>
-<dict>
-<key>assets</key>
-<array>
-<dict>
-<key>kind</key>
-<string>software-package</string>
-<key>url</key>
-<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/LocalDevTTCBB.ipa</string>
-</dict>
-<dict>
-<key>kind</key>
-<string>display-image</string>
-<key>url</key>
-<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon57x57.png</string>
-</dict>
-<dict>
-<key>kind</key>
-<string>full-size-image</string>
-<key>url</key>
-<string>https://raw.githubusercontent.com/johnnyDevCode/test/master/icon512x512.png</string>
-</dict>
-</array>
-<key>metadata</key>
-<dict>
-<key>bundle-identifier</key>
-<string>com.tingting.cbb</string>
-<key>bundle-version</key>
-<string>1.0</string>
-<key>kind</key>
-<string>software</string>
-<key>title</key>
-<string>TTCBB</string>
-</dict>
-</dict>
-</array>
-</dict>
-</plist>
-</code></pre>
+        <h1 id="这周做了一个iOS移动采编App在线安装方案，分享给大家。"><a href="#这周做了一个iOS移动采编App在线安装方案，分享给大家。" class="headerlink" title="这周做了一个iOS移动采编App在线安装方案，分享给大家。"></a>这周做了一个iOS移动采编App在线安装方案，分享给大家。</h1><p>如下：<br>1.首先需要有利用企业账号选择inhouse导出方式打包的ipa文件；<br>2.需要设计提供两个尺寸的App桌面显示的icon，文件为png，尺寸分别为57x57和512x512；<br>3.需要一个名字为“manifest.plist”的配置文件，里面的具体见附件中的manifest.plist<br>4.将以上文件，包括ipa、icon、manifest.plist等存储在咱们自己的服务器上，要求访问URL为https；<br>5.在web页面中的安装按钮的链接设置为如下格式：<br><code>&lt;a href=&quot;itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist&quot;&gt;click to download&lt;/a&gt;</code><br>注意：不符合这种格式的话苹果iOS系统不能识别，就无法安装；蓝色部分为配置文件在服务器上的访问的URL</p>
+<p>6.关于升级功能的实现，需要服务器管理安装包的版本，每个版本都需要维护上面的一套ipa和manifest.plist。<br>7.升级接口中需要返回给客户端安装最新版的URL应该是包含红色部分的固定格式的完整链接，比如:<code>itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist</code></p>
+<p>最后是我做的一个例子，访问地址：<a href="itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/johnnyDevCode/test/master/manifest.plist" target="_blank" rel="external">安装企业版ipa</a><br>简单说一下，就是用nginx在本机搭建了一个web服务器，写了一个很简单的html页面；为了快速解决https关于SSL证书的问题，我使用了github的免费空间，将pa、icon、manifest.plist放在上面。</p>
+<h3 id="manifest-plist的详细内容如下："><a href="#manifest-plist的详细内容如下：" class="headerlink" title="manifest.plist的详细内容如下："></a>manifest.plist的详细内容如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;items&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;assets&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software-package&lt;/string&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://raw.githubusercontent.com/johnnyDevCode/test/master/LocalDevTTCBB.ipa&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;display-image&lt;/string&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://raw.githubusercontent.com/johnnyDevCode/test/master/icon57x57.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;full-size-image&lt;/string&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://raw.githubusercontent.com/johnnyDevCode/test/master/icon512x512.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;key&gt;metadata&lt;/key&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;bundle-identifier&lt;/key&gt;</div><div class="line">&lt;string&gt;com.tingting.cbb&lt;/string&gt;</div><div class="line">&lt;key&gt;bundle-version&lt;/key&gt;</div><div class="line">&lt;string&gt;1.0&lt;/string&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software&lt;/string&gt;</div><div class="line">&lt;key&gt;title&lt;/key&gt;</div><div class="line">&lt;string&gt;TTCBB&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
 
       
     </div>
