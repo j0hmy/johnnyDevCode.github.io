@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,blog,github," />
+  <meta name="keywords" content="iOS,同步锁," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="搭建独立博客方法以下是一些参考：使用hexo在github上搭建独立博客">
+<meta name="description" content="iOS开发中如何正确使用@synchronized()今天发现一篇文章介绍的关于@synchronized()用法说得比较全而且比较清楚，所以写这篇文章来记录一下，以便以后查看。
+@synchronized原理@synchronized是几种iOS多线程同步机制中最慢的一个，同时也是最方便的一个。
+
+synchronized是使用的递归mutex来做同步。
+@synchronized(nil)不起">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建独立博客">
-<meta property="og:url" content="http://yoursite.com/2016/12/07/createBlog/index.html">
+<meta property="og:title" content="正确使用@synchronized()">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/synchronized/index.html">
 <meta property="og:site_name" content="johnny's technology blog">
-<meta property="og:description" content="搭建独立博客方法以下是一些参考：使用hexo在github上搭建独立博客">
-<meta property="og:updated_time" content="2016-12-07T10:08:38.000Z">
+<meta property="og:description" content="iOS开发中如何正确使用@synchronized()今天发现一篇文章介绍的关于@synchronized()用法说得比较全而且比较清楚，所以写这篇文章来记录一下，以便以后查看。
+@synchronized原理@synchronized是几种iOS多线程同步机制中最慢的一个，同时也是最方便的一个。
+
+synchronized是使用的递归mutex来做同步。
+@synchronized(nil)不起">
+<meta property="og:updated_time" content="2016-12-08T09:29:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建独立博客">
-<meta name="twitter:description" content="搭建独立博客方法以下是一些参考：使用hexo在github上搭建独立博客">
+<meta name="twitter:title" content="正确使用@synchronized()">
+<meta name="twitter:description" content="iOS开发中如何正确使用@synchronized()今天发现一篇文章介绍的关于@synchronized()用法说得比较全而且比较清楚，所以写这篇文章来记录一下，以便以后查看。
+@synchronized原理@synchronized是几种iOS多线程同步机制中最慢的一个，同时也是最方便的一个。
+
+synchronized是使用的递归mutex来做同步。
+@synchronized(nil)不起">
 
 
 
@@ -114,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/07/createBlog/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/synchronized/"/>
 
-  <title> 搭建独立博客 | johnny's technology blog </title>
+  <title> 正确使用@synchronized() | johnny's technology blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +258,7 @@
             
             
               
-                搭建独立博客
+                正确使用@synchronized()
               
             
           </h1>
@@ -258,8 +270,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-07T18:06:46+08:00" content="2016-12-07">
-              2016-12-07
+            <time itemprop="dateCreated" datetime="2016-12-08T17:08:49+08:00" content="2016-12-08">
+              2016-12-08
             </time>
           </span>
 
@@ -269,8 +281,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/07/createBlog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/createBlog/" itemprop="commentsCount"></span>
+                <a href="/2016/12/08/synchronized/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/synchronized/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,7 +305,23 @@
       
 
       
-        <h2 id="搭建独立博客方法"><a href="#搭建独立博客方法" class="headerlink" title="搭建独立博客方法"></a>搭建独立博客方法</h2><p>以下是一些参考：<br><a href="http://huangnx.com/2016/03/17/BlogPlatByHexoAndGithub/" target="_blank" rel="external">使用hexo在github上搭建独立博客</a></p>
+        <h1 id="iOS开发中如何正确使用-synchronized"><a href="#iOS开发中如何正确使用-synchronized" class="headerlink" title="iOS开发中如何正确使用@synchronized()"></a>iOS开发中如何正确使用@synchronized()</h1><p>今天发现一篇文章介绍的关于@synchronized()用法说得比较全而且比较清楚，所以写这篇文章来记录一下，以便以后查看。</p>
+<h3 id="synchronized原理"><a href="#synchronized原理" class="headerlink" title="@synchronized原理"></a>@synchronized原理</h3><p>@synchronized是几种iOS多线程同步机制中最慢的一个，同时也是最方便的一个。</p>
+<ul>
+<li>synchronized是使用的递归mutex来做同步。</li>
+<li>@synchronized(nil)不起任何作用</li>
+<li>synchronized中传入的object的内存地址，被用作key，通过hash map对应的一个系统维护的递归锁。</li>
+</ul>
+<p>递归mutex的意思是，我们可以写如下代码但是不会造成死锁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@synchronized (obj) &#123;</div><div class="line">NSLog(@&quot;1st sync&quot;);</div><div class="line">@synchronized (obj) &#123;</div><div class="line">NSLog(@&quot;2nd sync&quot;);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="慎用-synchronized-self"><a href="#慎用-synchronized-self" class="headerlink" title="慎用@synchronized(self)"></a>慎用@synchronized(self)</h3><p>下面的代码很容易出现锁死，原因是因为self很可能会被外部对象访问，被用作key来生成一锁，类似上述代码中的@synchronized (objectA)。两个公共锁交替使用的场景就容易出现死锁。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//class A</div><div class="line">@synchronized (self) &#123;</div><div class="line">[_sharedLock lock];</div><div class="line">NSLog(@&quot;code in class A&quot;);</div><div class="line">[_sharedLock unlock];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//class B</div><div class="line">[_sharedLock lock];</div><div class="line">@synchronized (objectA) &#123;</div><div class="line">NSLog(@&quot;code in class B&quot;);</div><div class="line">&#125;</div><div class="line">[_sharedLock unlock];</div></pre></td></tr></table></figure></p>
+<p>正确的做法是传入一个类内部维护的NSObject对象，而且这个对象是对外不可见的。</p>
+<h3 id="精准的粒度控制"><a href="#精准的粒度控制" class="headerlink" title="精准的粒度控制"></a>精准的粒度控制</h3><p>锁本质上是为了让我们的一段代码获得原子性，不同的临界区要使用不同的锁。<br>不要使用下面的方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@synchronized (sharedToken) &#123;</div><div class="line">[arrA addObject:obj];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@synchronized (sharedToken) &#123;</div><div class="line">[arrB addObject:obj];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>应该是不同的数据使用不同的锁，尽量将粒度控制在最细的程度。上述代码应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@synchronized (tokenA) &#123;</div><div class="line">[arrA addObject:obj];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@synchronized (tokenB) &#123;</div><div class="line">[arrB addObject:obj];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="注意内部的函数调用"><a href="#注意内部的函数调用" class="headerlink" title="注意内部的函数调用"></a>注意内部的函数调用</h3><p>@synchronized还有个很容易变慢的场景，就是{}内部有其他隐蔽的函数调用。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@synchronized (tokenA) &#123;</div><div class="line">[arrA addObject:obj];</div><div class="line">[self doSomethingWithA:arrA];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>doSomethingWithA内部可能又调用了其他函数，维护doSomethingWithA的工程师可能并没有意识到自己是被锁同步的，由此层层叠叠可能引入更多的函数调用，代码就莫名其妙的越来越慢了，感觉锁的性能差，其实是我们没用好。</p>
+<p>所以在书写@synchronized内部代码的时候，要十分小心内部隐蔽的函数调用。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://mp.weixin.qq.com/s/gf5ZtzAcrQpGF3U6bJR03w" target="_blank" rel="external">正确使用@synchronized()</a></p>
 
       
     </div>
@@ -316,11 +344,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/blog/" rel="tag">#blog</a>
-          
-            <a href="/tags/github/" rel="tag">#github</a>
+            <a href="/tags/同步锁/" rel="tag">#同步锁</a>
           
         </div>
       
@@ -329,16 +355,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/07/MarkDownUse/" rel="next" title="MarkDown使用参考">
-                <i class="fa fa-chevron-left"></i> MarkDown使用参考
+              <a href="/2016/12/07/createBlog/" rel="next" title="搭建独立博客">
+                <i class="fa fa-chevron-left"></i> 搭建独立博客
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/08/synchronized/" rel="prev" title="正确使用@synchronized()">
-                正确使用@synchronized() <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/08/iosBlogList/" rel="prev" title="iOS相关的一些高质量博客">
+                iOS相关的一些高质量博客 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -365,8 +391,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/07/createBlog/"
-           data-title="搭建独立博客" data-url="http://yoursite.com/2016/12/07/createBlog/">
+      <div class="ds-thread" data-thread-key="2016/12/08/synchronized/"
+           data-title="正确使用@synchronized()" data-url="http://yoursite.com/2016/12/08/synchronized/">
       </div>
     
   </div>
@@ -450,7 +476,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建独立博客方法"><span class="nav-number">1.</span> <span class="nav-text">搭建独立博客方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS开发中如何正确使用-synchronized"><span class="nav-number">1.</span> <span class="nav-text">iOS开发中如何正确使用@synchronized()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized原理"><span class="nav-number">1.0.1.</span> <span class="nav-text">@synchronized原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#慎用-synchronized-self"><span class="nav-number">1.0.2.</span> <span class="nav-text">慎用@synchronized(self)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精准的粒度控制"><span class="nav-number">1.0.3.</span> <span class="nav-text">精准的粒度控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意内部的函数调用"><span class="nav-number">1.0.4.</span> <span class="nav-text">注意内部的函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">1.0.5.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
